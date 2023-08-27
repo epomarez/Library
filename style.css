@@ -18,13 +18,13 @@ body {
 }
 
 .section {
-    padding: 0 20%;
+    padding: 0 25%;
     flex-grow: 1;
 }
 
 .section.header, .section.footer{
     padding: 1% 20%;
-    flex-grow: 1;
+    height: 55px;
     background-color: #CD3F3F;
     
 }
@@ -44,15 +44,21 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-grow: 12;
+    flex-grow: 1;
 }
 
-article{
+.cards{
     background-color: #fff;
+
     width: 100%;
     flex-grow: 1;
+    padding: 3% 20%;
 
-}
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: flex-start;
+    row-gap: 30px;
 
-.section.footer{
+    
 }
