@@ -14,20 +14,45 @@ body {
     align-items: stretch;
     justify-content: space-between;
     min-height: 100vh;
+    background-color: rgb(238, 241, 243);
 }
 
 .section {
-    padding: 1% 20%;
+    padding: 0 20%;
     flex-grow: 1;
 }
 
+.section.header, .section.footer{
+    padding: 1% 20%;
+    flex-grow: 1;
+    background-color: #CD3F3F;
+    
+}
+
+.section.header, h1 {
+    color: #F9F8F5;
+}
+
 .section.header {
-    background-color: blue;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.section.body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 12;
+}
+
+article{
+    background-color: #fff;
+    width: 100%;
+    flex-grow: 1;
+
+}
+
 .section.footer{
-    background-color: red;
 }
