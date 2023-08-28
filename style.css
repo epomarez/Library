@@ -4,8 +4,8 @@
     list-style: none;
     text-decoration: none;
     background-color: f9faf8;
-    color: #f9faf8;
     font-family: sans-serif;
+    box-sizing: border-box;
 }
 
 body {
@@ -18,7 +18,7 @@ body {
 }
 
 .section {
-    padding: 0 25%;
+ 
     flex-grow: 1;
 }
 
@@ -29,7 +29,7 @@ body {
     
 }
 
-.section.header, h1 {
+.section.header h1 {
     color: #F9F8F5;
 }
 
@@ -47,18 +47,54 @@ body {
     flex-grow: 1;
 }
 
+.addBooks {
+    background-color: #DDEDAA;
+    align-self: stretch;
+    color: #2F3E2C;
+   
+
+}
+
+form {
+
+}
+
+.inputs {
+    display: flex;
+    justify-content:flex-start;
+    flex-wrap: wrap;
+    max-width: 95%;
+}
+
+.form h1 {
+    color: #568259;
+}
+
+.form-group {
+    margin: 15px 40px;
+}
+
+.form-group input {
+    width: 250px;
+    color: #568259;
+    background-color: #eef5d4;
+}
+
+
+
+
 .cards{
     background-color: #fff;
 
-    width: 100%;
+   
     flex-grow: 1;
-    padding: 3% 20%;
+    padding: 3% 15%;
+    width: 75%;
 
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-content: flex-start;
     row-gap: 30px;
-
     
 }

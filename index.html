@@ -1,19 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <link rel="stylesheet" href="style.css">
-    
+
 </head>
+
 <body>
     <header class="header section">
         <h1>Librería aristotélica-tomista</h1>
     </header>
     <div class="section body">
         <div class="addBooks">
-            
+            <h1>Agrega un libro</h1>
+
+            <form action="example.com/path" method="post">
+
+                <div class="inputs">
+
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" id="title">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="author">Author:</label>
+                        <input type="text" id="author">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Summary">Summary:</label>
+                        <input type="text" id="Summary">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Number of pages">Number of pages:</label>
+                        <input type="text" id="Number of pages">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Is read">Is read:</label>
+                        <input type="checkbox" id="Is_read" name="Is_read">
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <button type="submit">Submit</button>
+                </div>
+
+            </form>
         </div>
         <article class="cards">
 
@@ -22,4 +62,5 @@
     <footer class="section footer"></footer>
     <script src="script.js"></script>
 </body>
+
 </html>
