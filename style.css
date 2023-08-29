@@ -84,13 +84,13 @@ body {
 
    
     flex-grow: 1;
-    padding: 3% 15%;
-    width: 75%;
+    padding: 3% 8%;
+    width: 70%;
 
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-content: flex-start;
-    row-gap: 30px;
+    justify-content: flex-start;
+    align-content: space-around;
+    gap: 15px 15px;
     
 }
