@@ -19,6 +19,7 @@ function createBook() {
   const author = document.getElementById('author').value;
   const summary = document.getElementById('summary').value;
   const pagesNumber = document.getElementById('pageNumber').value;
+ 
   const isRead = document.getElementById('isRead').checked;
 
   return new Book(title, author, summary, pagesNumber, isRead);
@@ -84,7 +85,7 @@ function generateBookFields(book, id) {
   summary.innerText = `Summary: ${book.summary}`;
 
   const pagesNumber = document.createElement('p');
-  pagesNumber.innerText = `Pages Number: ${book.pagesNumber}`;
+  pagesNumber.innerText = `Pages Number: ${book.pageNumber}`;
 
   const isRead = document.createElement('div');
   isRead.innerText = `Is read: `;
@@ -117,7 +118,7 @@ function addCard(book, id) {
 //Adds book to myLibrary array and its card to .cards.
 function addBookToLibrary(event) {
   let newBook = createBook();
-  myLibrary.push(createBook());
+  myLibrary.push(newBook);
   addCard(newBook, (myLibrary.length - 1));
   event.preventDefault();
 }
