@@ -1,7 +1,7 @@
 const myLibrary = [];
 
 function Book(title, author, summary, pageNumber, isRead) {
-    this.title = title,
+  this.title = title,
     this.author = author,
     this.summary = summary,
     this.pageNumber = pageNumber,
@@ -12,7 +12,7 @@ const submitBtn = document.getElementById('submit_button');
 
 let cardSection = document.querySelector('.cards');
 
-function createBook(){
+function createBook() {
   const title = document.getElementById('title').value;
   const author = document.getElementById('author').value;
   const summary = document.getElementById('summary').value;
@@ -25,9 +25,9 @@ function createBook(){
 function addBookToLibrary(event) {
   let newBook = createBook();
   myLibrary.push(createBook());
-  addCard(newBook, (myLibrary.length-1));
+  addCard(newBook, (myLibrary.length - 1));
   event.preventDefault();
-  
+
 }
 
 function generateBookFields(book, id) {
@@ -44,10 +44,35 @@ function generateBookFields(book, id) {
   let pagesNumber = document.createElement('p');
   pagesNumber.innerText = `Pages Number: ${book.pagesNumber}`;
 
-  let isRead = document.createElement('p');
-  isRead.innerText = `Is read: ${book.isRead}`;
+  let isRead = document.createElement('div');
+  isRead.innerText = `Is read: `;
+  isRead.appendChild(appendReadCheckBx(id, book.isRead));
+
 
   return new Array(title, author, summary, pagesNumber, isRead);
+}
+
+function appendReadCheckBx(id, isRead) {
+  const checkBx = document.createElement('input');
+  checkBx.setAttribute('type', 'checkBox');
+
+  if (isRead) {
+    checkBx.checked = true;
+  } else {
+    checkBx.checked = false;
+  }
+
+  checkBx.addEventListener('change', () => {
+    if (checkBx.checked) {
+      myLibrary[id].isRead = true;
+      console.log('checked');
+    } else {
+      myLibrary[id].isRead = false;
+      console.log('unchecked');
+    }
+  });
+
+  return checkBx;
 }
 
 function appendBookData(card, bookFields, id) {
@@ -67,19 +92,21 @@ function addCard(book, id) {
 
 }
 
-function appendDeleteButton(card){
+function appendDeleteButton(card) {
   let deleteButton = document.createElement('button');
-  deleteButton.style.cssText=("width:120px; height:20px");
+  deleteButton.style.cssText = ("width:120px; height:20px");
   deleteButton.innerText = "Delete book";
-  deleteButton.addEventListener('click', ()=>{
+  deleteButton.addEventListener('click', () => {
     deleteCard(card);
   })
   card.appendChild(deleteButton);
 }
 
-function deleteCard(card){
+
+
+function deleteCard(card) {
   myLibrary.splice(card.id, 1);
-  if(myLibrary[card.id]){
+  if (myLibrary[card.id]) {
     let nextCard = card.nextElementSibling;
     nextCard.id = card.id;
   }
