@@ -8,9 +8,12 @@ function Book(title, author, summary, pageNumber, isRead) {
     this.isRead = isRead
 }
 
+const submitBtn = document.getElementById('submit_button');
+
+let cardSection = document.querySelector('.cards');
+
 function createBook(){
   const title = document.getElementById('title').value;
-  console.log(title + "opa opa");
   const author = document.getElementById('author').value;
   const summary = document.getElementById('summary').value;
   const pagesNumber = document.getElementById('pageNumber').value;
@@ -26,13 +29,6 @@ function addBookToLibrary(event) {
   event.preventDefault();
   
 }
-
-const submitBtn = document.getElementById('submit_button');
-
-submitBtn.addEventListener('click', addBookToLibrary);
-
-
-let cardSection = document.querySelector('.cards');
 
 function generateBookFields(book, id) {
 
@@ -51,11 +47,6 @@ function generateBookFields(book, id) {
   let isRead = document.createElement('p');
   isRead.innerText = `Is read: ${book.isRead}`;
 
-  let deleteButton = document.createElement('button');
-  deleteButton.addEventListener('click', ()=>{
-    
-  })
-
   return new Array(title, author, summary, pagesNumber, isRead);
 }
 
@@ -63,9 +54,9 @@ function appendBookData(card, bookFields, id) {
 
   for (i = 0; i < bookFields.length; i++) {
     card.appendChild(bookFields[i]);
-    card.setAttribute('id', `${id}`);
   }
-
+  card.setAttribute('id', `${id}`);
+  appendDeleteButton(card);
   return card;
 }
 
@@ -76,6 +67,24 @@ function addCard(book, id) {
 
 }
 
-// for (let i = 0; i < 7; i++) {
-//   addCard(null);
-// }
+function appendDeleteButton(card){
+  let deleteButton = document.createElement('button');
+  deleteButton.style.cssText=("width:120px; height:20px");
+  deleteButton.innerText = "Delete book";
+  deleteButton.addEventListener('click', ()=>{
+    deleteCard(card);
+  })
+  card.appendChild(deleteButton);
+}
+
+function deleteCard(card){
+  myLibrary.splice(card.id, 1);
+  if(myLibrary[card.id]){
+    let nextCard = card.nextElementSibling;
+    nextCard.id = card.id;
+  }
+  cardSection.removeChild(card);
+}
+
+
+submitBtn.addEventListener('click', addBookToLibrary);
