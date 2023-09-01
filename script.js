@@ -19,7 +19,7 @@ function createBook() {
   const author = document.getElementById('author').value;
   const summary = document.getElementById('summary').value;
   const pagesNumber = document.getElementById('pageNumber').value;
- 
+
   const isRead = document.getElementById('isRead').checked;
 
   return new Book(title, author, summary, pagesNumber, isRead);
@@ -68,7 +68,7 @@ function generateDeleteButton() {
   deleteButton.addEventListener('click', () => {
     deleteCard(deleteButton.parentElement);
   })
-  
+
   return deleteButton;
 }
 
@@ -116,12 +116,46 @@ function addCard(book, id) {
 }
 
 //Adds book to myLibrary array and its card to .cards.
-function addBookToLibrary(event) {
+function addBookToLibrary() {
   let newBook = createBook();
   myLibrary.push(newBook);
   addCard(newBook, (myLibrary.length - 1));
-  event.preventDefault();
+
 }
 
+function validInputs() {
+  const title = document.getElementById('title').value;
+  const author = document.getElementById('author').value;
+  const summary = document.getElementById('summary').value;
+  const pagNum = document.getElementById('pageNumber').value;
+  if ((title === "" || author === "" || summary === "" || (pagNum === "" || pagNum === 0))) {
+    return false;
+  } else {
+    return true;
+  }
+}
 
-submitBtn.addEventListener('click', addBookToLibrary);
+submitBtn.addEventListener('click', (event) => {
+  if (validInputs()) {
+    addBookToLibrary();
+    const formContainer = document.querySelector(".addBooks");
+    if(document.getElementById("invalid")){
+      formContainer.removeChild(document.getElementById("invalid"));
+    }
+  } else {
+    if (document.getElementById("invalid")) {
+      
+    } else {
+      const divAdvertence = document.createElement('div');
+      divAdvertence.setAttribute("id", "invalid");
+      divAdvertence.innerText = "Fields must not be empty";
+      divAdvertence.style.cssText = "color: red";
+      const formContainer = document.querySelector(".addBooks");
+      formContainer.appendChild(divAdvertence);
+    }
+  }
+  event.preventDefault();
+
+});
+
+
