@@ -1,12 +1,17 @@
 const myLibrary = [];
 
 //Constructor for books
-function Book(title, author, summary, pageNumber, isRead) {
+function Book(title, author, summary, pageNumber, isRead, id) {
   this.title = title,
     this.author = author,
     this.summary = summary,
     this.pageNumber = pageNumber,
-    this.isRead = isRead
+    this.isRead = isRead,
+    this.id = id
+}
+
+Book.prototype.toggleRead = function (isRead) {
+  this.isRead = isRead;
 }
 
 const submitBtn = document.getElementById('submit_button');
@@ -22,7 +27,9 @@ function createBook() {
 
   const isRead = document.getElementById('isRead').checked;
 
-  return new Book(title, author, summary, pagesNumber, isRead);
+  const id = crypto.randomUUID();;
+
+  return new Book(title, author, summary, pagesNumber, isRead, id);
 }
 
 //Checkbox for change isRead value
@@ -39,11 +46,8 @@ function appendReadCheckBx(id, isRead) {
 
   //This would apply change to the object itself
   checkBx.addEventListener('change', () => {
-    if (checkBx.checked) {
-      myLibrary[id].isRead = true;
-    } else {
-      myLibrary[id].isRead = false;
-    }
+    let book = myLibrary.find(book => book.id === id);
+    book.toggleRead(checkBx.checked)
   });
 
   return checkBx;
@@ -53,10 +57,6 @@ function appendReadCheckBx(id, isRead) {
 
 function deleteCard(card) {
   myLibrary.splice(card.id, 1);
-  if (myLibrary[card.id]) {
-    let nextCard = card.nextElementSibling;
-    nextCard.id = card.id;
-  }
   cardSection.removeChild(card);
 }
 
@@ -104,7 +104,7 @@ function appendBookData(card, book, id) {
   for (i = 0; i < bookFields.length; i++) {
     card.appendChild(bookFields[i]);
   }
-  card.setAttribute('id', `${id}`);
+  card.dataset.id = `${id}`;
   return card;
 }
 
@@ -119,7 +119,7 @@ function addCard(book, id) {
 function addBookToLibrary() {
   let newBook = createBook();
   myLibrary.push(newBook);
-  addCard(newBook, (myLibrary.length - 1));
+  addCard(newBook, (newBook.id));
 
 }
 
@@ -139,12 +139,12 @@ submitBtn.addEventListener('click', (event) => {
   if (validInputs()) {
     addBookToLibrary();
     const formContainer = document.querySelector(".addBooks");
-    if(document.getElementById("invalid")){
+    if (document.getElementById("invalid")) {
       formContainer.removeChild(document.getElementById("invalid"));
     }
   } else {
     if (document.getElementById("invalid")) {
-      
+
     } else {
       const divAdvertence = document.createElement('div');
       divAdvertence.setAttribute("id", "invalid");
